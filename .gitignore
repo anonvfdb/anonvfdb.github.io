@@ -1,4 +1,5 @@
 preview.src.html
+HANDOFF.md
 node_modules/
 *.bak
 .DS_Store
