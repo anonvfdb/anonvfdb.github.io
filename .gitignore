@@ -1,0 +1,5 @@
+preview.src.html
+node_modules/
+*.bak
+.DS_Store
+clips_temp/
