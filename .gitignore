@@ -4,3 +4,5 @@ node_modules/
 *.bak
 .DS_Store
 clips_temp/
+encrypted/
+
