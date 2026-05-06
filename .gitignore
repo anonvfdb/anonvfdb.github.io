@@ -5,4 +5,7 @@ node_modules/
 .DS_Store
 clips_temp/
 encrypted/
+croissant.json
+videofdb-*.zip
+*.tar.gz
 
