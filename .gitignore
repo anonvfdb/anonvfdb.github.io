@@ -9,3 +9,14 @@ croissant.json
 videofdb-*.zip
 *.tar.gz
 
+response/__pycache__/
+response/*.src.html
+response/clips/
+response/.encoded/
+
+# extracted dataset — the whole unencrypted corpus, never commit
+videofdb-1.0.0/
+
+# PDFs are inlined into the encrypted consent page; a plain copy here
+# would be fetchable around the password gate
+consent-forms/

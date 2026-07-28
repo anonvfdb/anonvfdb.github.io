@@ -1,0 +1,244 @@
+/* Response-to-reviewers page. Extends ../style.css — same palette, wider column
+   because each sample puts two video panes side by side. */
+
+main.wide { max-width: 1040px; }
+
+.pagenav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.pagenav a { color: var(--accent); text-decoration: none; }
+.pagenav a:hover { text-decoration: underline; }
+
+section { scroll-margin-top: 16px; }
+
+.muted { color: var(--fg-muted); }
+.small { font-size: 13px; }
+
+/* ---------- A. Consent ---------- */
+
+.consent-index {
+  margin: 8px 0 18px;
+  padding-left: 22px;
+  font-size: 15px;
+}
+.consent-index li { margin-bottom: 5px; }
+.consent-index a { color: var(--accent); }
+
+.consent-cta { margin: 0; }
+
+.consent-card {
+  margin: 24px 0;
+  padding: 20px 22px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.consent-title { margin: 0 0 8px; font-size: 17px; }
+
+.consent-card > p { font-size: 14px; color: var(--fg-muted); }
+
+.pdf {
+  width: 100%;
+  height: 560px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--code-bg);
+  display: block;
+  margin: 14px 0 12px;
+}
+
+.consent-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+}
+
+.btn-sm { padding: 7px 16px; font-size: 14px; }
+
+.filename {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+/* ---------- B. Samples: pills ---------- */
+
+.pills { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.pill {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--code-bg);
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+.pill-id {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  background: var(--accent);
+  color: white;
+  letter-spacing: 0.03em;
+}
+
+.pill-model,
+.pill-bucket { background: #e3e9f4; color: #1a4480; }
+.pill-mode { background: #ecebe4; color: #5a5648; }
+.pill-human,
+.pill-paired { background: #d6efdf; color: #0a6c2e; }
+
+/* ---------- B. Samples: row layout ---------- */
+
+.pair {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  padding: 14px 16px 16px;
+  margin-bottom: 20px;
+}
+
+.pair.unpaired { background: #fdfdfb; }
+
+.pair-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pair-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* Generation rows have no av/ao split — one centred cell, capped so the video does
+   not balloon to the full page width. */
+.pair-cols.one-col {
+  grid-template-columns: minmax(0, 620px);
+  justify-content: center;
+}
+
+.pair-col { min-width: 0; }
+
+.pair-col .col-head {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.pair-col video {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #000;
+  display: block;
+}
+
+.pair-col h4 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg-muted);
+  margin: 16px 0 8px;
+}
+
+.missing-box {
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 28px 20px;
+  text-align: center;
+  background: var(--code-bg);
+}
+
+.missing-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--fg-muted);
+}
+
+.missing-box p:last-child { margin: 0; }
+
+/* ---------- B. Samples: transcript ---------- */
+
+blockquote.transcript {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--code-bg);
+  border-left: 3px solid var(--border);
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* Some failure modes produce runaway output — cap it so one row can't eat the page. */
+blockquote.transcript.long {
+  max-height: 190px;
+  overflow-y: auto;
+}
+
+/* ---------- scoring (build_response.score_table, currently not rendered) ---------- */
+
+table.scores { margin: 0; font-size: 13px; }
+table.scores th { background: transparent; border-bottom: 1px solid var(--border); }
+table.scores th:not(:first-child) { text-align: center; width: 100px; }
+table.scores td { padding: 7px 10px; vertical-align: middle; }
+.pair-col table.scores th:not(:first-child) { width: 72px; }
+
+.ax-name { font-weight: 500; display: block; }
+.ax-hint { font-size: 11px; color: var(--fg-muted); display: block; line-height: 1.35; }
+
+td.sc {
+  text-align: center;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 600;
+}
+td.sc.s-low { color: #8c2c1e; }
+td.sc.s-mid { color: #7a4a0a; }
+td.sc.s-high { color: #0a6c2e; }
+td.sc.na { color: var(--border); font-weight: 400; }
+
+.nohuman { margin: 8px 0 0; font-style: italic; }
+
+.rater-notes {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: var(--code-bg);
+  border-radius: 6px;
+  font-size: 13px;
+}
+.rater-notes p { margin: 0 0 6px; }
+.rater-notes p:last-child { margin-bottom: 0; }
+.rater-notes .who {
+  font-weight: 600;
+  color: var(--fg-muted);
+  margin-right: 7px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .pair-cols { grid-template-columns: 1fr; }
+}
